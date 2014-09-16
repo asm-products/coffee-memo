@@ -26,6 +26,7 @@ Your coffee experience: aroma, body, taste - memorialized. That's coffee memo.
 #### CSS framework
 * Bootstrap 3
 * Bootstrap SASS
+
 ---
 
 **In development setup your Postgres DB and database.yml and run:**
