@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916065101) do
+ActiveRecord::Schema.define(version: 20140916071758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "memos", force: true do |t|
+    t.string   "coffee_shop"
+    t.string   "kind_of_coffee"
+    t.string   "origin"
+    t.string   "taste"
+    t.string   "aroma"
+    t.string   "mood"
+    t.string   "barrista"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "memos", ["user_id"], name: "index_memos_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
