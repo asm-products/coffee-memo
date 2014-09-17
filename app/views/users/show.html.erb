@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+
+    <div class="col-md-4">
+      <h1 class="text-center">COFFEE MEMOS</h1>
+      <ul class="list-group">
+        <li class="list-group-item">USERNAME: <%= @user.username  %></li>
+        <li class="list-group-item">FIRST NAME: <%= @user.first_name %></li>
+        <li class="list-group-item">LAST NAME: <%= @user.last_name %></li>
+        <li class="list-group-item">EMAIL: <%= @user.email %></li>
+        <%# link_to "#{@user.username.capitalize}'s Memos", user_memos_path(@user) %>
+        <li class="list-group-item"><%= link_to "YOUR MEMOS", user_memos_path(@user) %></li>
+      </ul>
+      <%= link_to 'Create a Memo', new_user_memo_path(@user), class: 'btn btn-primary btn-lg btn-block' %>
+      <%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-default btn-lg btn-block' %>
+
+      <div class="panel panel-default">
+        <% @memos.each do |memo| %>
+          <div class="panel-body">
+            <%= link_to memo.origin, user_memo_path(@user, memo) %> &middot; <%= memo.kind_of_coffee %>
+          </div>
+        <% end %>
+      </div>
+
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: coffee_memo_dev
+  pool: 5
+# username: myusername
+# password: password1
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: coffee_memo_test
+  pool: 5

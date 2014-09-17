@@ -1,0 +1,25 @@
+<% @user.errors.full_messages.each do |error| %>
+  <h4 class="alert alert-danger" role="alert"><%= error %>!</h4>
+<% end %>
+
+<%= form_for @user do  |f| %>
+  <div class="form-group">
+    <%= f.label :username %><br>
+    <%= f.text_field :username, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit 'Update', class: "btn btn-default btn-lg btn-block" %>
+  </div>
+<% end %>

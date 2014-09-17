@@ -1,0 +1,42 @@
+<h2 class="text-center">MEMO</h2>
+<% @memo.errors.full_messages.each do |error| %>
+  <h4 class="alert alert-danger" role="alert"><%= error %>!</h4>
+<% end %>
+
+<%= form_for [@user, @memo] do  |f| %>
+  <div class="form-group">
+    <%= f.label :coffee_shop %><br>
+    <%= f.text_field :coffee_shop, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :kind_of_coffee %><br>
+    <%= f.text_field :kind_of_coffee, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :origin %><br>
+    <%= f.text_field :origin, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :taste %><br>
+    <%= f.text_field :taste, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :aroma %><br>
+    <%= f.text_field :aroma, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :mood %><br>
+    <%= f.text_field :mood, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :barrista %><br>
+    <%= f.text_field :barrista, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <% if @memo.new_record? %>
+      <%= f.submit "Memorialize it", class: 'btn btn-primary btn-lg btn-block' %>
+    <% else %>
+      <%= f.submit "Update Memo", class: 'btn btn-primary btn-lg btn-block' %>
+    <% end %>
+  </div>
+<% end %>
