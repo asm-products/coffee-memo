@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+
+    <div class="col-md-4">
+      <h1 class="text-center">USERS</h1>
+      <% @users.each do |user| %>
+        <ul class="list-group">
+          <li class="list-group-item">Username: <%= link_to user.username, user_path(user)  %></li>
+          <li class="list-group-item">Email: <%= user.email%></li>
+          <li class="list-group-item">First Name: <%= user.first_name %></li>
+          <li class="list-group-item">Last Name: <%= user.last_name %></li>
+        </ul>
+      <% end %>
+    </div>
+
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>

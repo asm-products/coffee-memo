@@ -1,45 +1,42 @@
-<%= form_for(@memo) do |f| %>
-  <% if @memo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@memo.errors.count, "error") %> prohibited this memo from being saved:</h2>
+<h2 class="text-center">MEMO</h2>
+<% @memo.errors.full_messages.each do |error| %>
+  <h4 class="alert alert-danger" role="alert"><%= error %>!</h4>
+<% end %>
 
-      <ul>
-      <% @memo.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+<%= form_for [@user, @memo] do  |f| %>
+  <div class="form-group">
     <%= f.label :coffee_shop %><br>
-    <%= f.text_field :coffee_shop %>
+    <%= f.text_field :coffee_shop, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :kind_of_coffee %><br>
-    <%= f.text_field :kind_of_coffee %>
+    <%= f.text_field :kind_of_coffee, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :origin %><br>
-    <%= f.text_field :origin %>
+    <%= f.text_field :origin, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :taste %><br>
-    <%= f.text_field :taste %>
+    <%= f.text_field :taste, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :aroma %><br>
-    <%= f.text_field :aroma %>
+    <%= f.text_field :aroma, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :mood %><br>
-    <%= f.text_field :mood %>
+    <%= f.text_field :mood, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :barrista %><br>
-    <%= f.text_field :barrista %>
+    <%= f.text_field :barrista, class: "form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <% if @memo.new_record? %>
+      <%= f.submit "Memorialize it", class: 'btn btn-primary btn-lg btn-block' %>
+    <% else %>
+      <%= f.submit "Update Memo", class: 'btn btn-primary btn-lg btn-block' %>
+    <% end %>
   </div>
 <% end %>

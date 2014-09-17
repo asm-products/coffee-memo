@@ -1,37 +1,28 @@
-<h1>Listing memos</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Coffee shop</th>
-      <th>Kind of coffee</th>
-      <th>Origin</th>
-      <th>Taste</th>
-      <th>Aroma</th>
-      <th>Mood</th>
-      <th>Barrista</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="col-md-4">
+      <h1 class="text-center">COFFEE MEMOS</h1>
+      <% @memos.each do |memo| %>
+        <ul class="list-group">
+          <li class="list-group-item">Coffee Shop: <%= memo.coffee_shop %></li>
+          <li class="list-group-item">Kind of Coffee: <%= memo.kind_of_coffee %></li>
+          <li class="list-group-item">Origin: <%= memo.origin %></li>
+          <li class="list-group-item">Taste: <%= memo.taste %></li>
+          <li class="list-group-item">Aroma: <%= memo.aroma %></li>
+          <li class="list-group-item">Mood: <%= memo.mood %></li>
+          <li class="list-group-item">Barrista: <%= memo.barrista %></li>
+          <li class="list-group-item"><%= link_to 'View Memo', user_memo_path(@user, memo) %></li>
+        </ul>
+      <% end %>
+      <div>
+        <%= link_to 'Create a Memo', new_user_memo_path, class: "btn btn-primary btn-lg btn-block" %>
+      </div>
+    </div>
 
-  <tbody>
-    <% @memos.each do |memo| %>
-      <tr>
-        <td><%= memo.coffee_shop %></td>
-        <td><%= memo.kind_of_coffee %></td>
-        <td><%= memo.origin %></td>
-        <td><%= memo.taste %></td>
-        <td><%= memo.aroma %></td>
-        <td><%= memo.mood %></td>
-        <td><%= memo.barrista %></td>
-        <td><%= link_to 'Show', memo %></td>
-        <td><%= link_to 'Edit', edit_memo_path(memo) %></td>
-        <td><%= link_to 'Destroy', memo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Memo', new_memo_path %>
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>

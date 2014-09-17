@@ -1,70 +1,52 @@
 class MemosController < ApplicationController
   before_action :set_memo, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
 
-  # GET /memos
-  # GET /memos.json
   def index
     @memos = Memo.all
   end
 
-  # GET /memos/1
-  # GET /memos/1.json
   def show
   end
 
-  # GET /memos/new
   def new
-    @memo = Memo.new
+    @memo = @user.memos.new
   end
 
-  # GET /memos/1/edit
   def edit
   end
 
-  # POST /memos
-  # POST /memos.json
   def create
-    @memo = Memo.new(memo_params)
-
-    respond_to do |format|
-      if @memo.save
-        format.html { redirect_to @memo, notice: 'Memo was successfully created.' }
-        format.json { render :show, status: :created, location: @memo }
-      else
-        format.html { render :new }
-        format.json { render json: @memo.errors, status: :unprocessable_entity }
-      end
+    @memo = @user.memos.new(memo_params)
+    @memo.user = current_user
+    if @memo.save
+      redirect_to user_memos_path(@user), notice: 'Memo was successfully created.'
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /memos/1
-  # PATCH/PUT /memos/1.json
   def update
-    respond_to do |format|
-      if @memo.update(memo_params)
-        format.html { redirect_to @memo, notice: 'Memo was successfully updated.' }
-        format.json { render :show, status: :ok, location: @memo }
-      else
-        format.html { render :edit }
-        format.json { render json: @memo.errors, status: :unprocessable_entity }
-      end
+    if @memo.update(memo_params)
+      redirect_to user_memo_path, notice: 'Memo updated.'
+    else
+      render :edit
     end
   end
 
-  # DELETE /memos/1
-  # DELETE /memos/1.json
   def destroy
-    @memo.destroy
-    respond_to do |format|
-      format.html { redirect_to memos_url, notice: 'Memo was successfully destroyed.' }
-      format.json { head :no_content }
+    if @memo.destroy
+      redirect_to user_memos_url, notice: 'Memo was successfully destroyed.'
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_memo
       @memo = Memo.find(params[:id])
+    end
+
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

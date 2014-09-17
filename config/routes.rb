@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root 'memos#index'
-  resources :memos
+  root 'users#show'
 
-  devise_for :users
-
+  # Avoiding route conflicts with users through this path_prefix
+  devise_for :users, :path_prefix => 'app'
+  resources :users do
+    resources :memos
+  end
 end

@@ -1,5 +1,14 @@
-<h1>New memo</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
 
-<%= render 'form' %>
+    <div class="col-md-4">
+      <%= render 'form' %>
+      <%= link_to 'Cancel', user_memos_path, class: "btn btn-default" %>
+    </div>
 
-<%= link_to 'Back', memos_path %>
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>

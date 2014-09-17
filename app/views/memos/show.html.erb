@@ -1,39 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
 
-<p>
-  <strong>Coffee shop:</strong>
-  <%= @memo.coffee_shop %>
-</p>
+    <div class="col-md-4">
+      <h1 class="text-center">COFFEE MEMO</h1>
+        <ul class="list-group">
+          <li class="list-group-item">Coffee Shop: <%= @memo.coffee_shop %></li>
+          <li class="list-group-item">Kind of Coffee: <%= @memo.kind_of_coffee %></li>
+          <li class="list-group-item">Origin: <%= @memo.origin %></li>
+          <li class="list-group-item">Taste: <%= @memo.taste %></li>
+          <li class="list-group-item">Aroma: <%= @memo.aroma %></li>
+          <li class="list-group-item">Mood: <%= @memo.mood %></li>
+          <li class="list-group-item">Barrista: <%= @memo.barrista %></li>
+        </ul>
+      <div>
+        <%= link_to 'Edit', edit_user_memo_path, class: "btn btn-success btn-lg btn-block" %>
+        <%= link_to 'Delete', user_memo_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-lg btn-block" %>
+      </div>
+    </div>
 
-<p>
-  <strong>Kind of coffee:</strong>
-  <%= @memo.kind_of_coffee %>
-</p>
-
-<p>
-  <strong>Origin:</strong>
-  <%= @memo.origin %>
-</p>
-
-<p>
-  <strong>Taste:</strong>
-  <%= @memo.taste %>
-</p>
-
-<p>
-  <strong>Aroma:</strong>
-  <%= @memo.aroma %>
-</p>
-
-<p>
-  <strong>Mood:</strong>
-  <%= @memo.mood %>
-</p>
-
-<p>
-  <strong>Barrista:</strong>
-  <%= @memo.barrista %>
-</p>
-
-<%= link_to 'Edit', edit_memo_path(@memo) %> |
-<%= link_to 'Back', memos_path %>
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>
