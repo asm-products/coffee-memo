@@ -59,7 +59,6 @@ group :development do
   gem 'guard-rubocop'
   gem 'guard-rails'
   gem 'guard-bundler'
-  gem 'guard-cucumber'
   gem 'guard-passenger'
   gem 'spring'
   gem 'spring-commands-rspec'
