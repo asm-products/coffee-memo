@@ -1,56 +1,75 @@
 class MemosController < ApplicationController
-  before_action :set_memo, only: [:show, :edit, :update, :destroy]
-  before_action :set_user
+  before_action :authenticate_user!
 
   def index
-    @memos = Memo.all
+    load_memos
   end
 
   def show
+    load_memo
   end
 
   def new
-    @memo = @user.memos.new
-  end
-
-  def edit
+    build_memo
   end
 
   def create
-    @memo = @user.memos.new(memo_params)
-    @memo.user = current_user
-    if @memo.save
-      redirect_to user_memos_path(@user), notice: 'Memo was successfully created.'
-    else
-      render :new
-    end
+    build_memo
+    save_memo || render('new')
+  end
+
+  def edit
+    load_memo
+    build_memo
   end
 
   def update
-    if @memo.update(memo_params)
-      redirect_to user_memo_path, notice: 'Memo updated.'
-    else
-      render :edit
-    end
+    load_memo
+    build_memo
+    save_memo || render('edit')
   end
 
   def destroy
-    if @memo.destroy
-      redirect_to user_memos_url, notice: 'Memo was successfully destroyed.'
-    end
+    load_memo
+    @memo.destroy
+    redirect_to root_url, alert: t('controllers.memos_controller.destroy')
   end
 
   private
-    def set_memo
-      @memo = Memo.find(params[:id])
-    end
 
-    def set_user
-      @user = User.find(params[:user_id])
-    end
+  def load_memo
+    @memo ||= memo_scope.to_a
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def memo_params
-      params.require(:memo).permit(:coffee_shop, :kind_of_coffee, :origin, :taste, :aroma, :mood, :barrista)
-    end
+  def load_memo
+    @memo ||= memo_scope.find(params[:id])
+  end
+
+  def build_memo
+    @memo ||= memo_scope.build
+    @memo.attributes = memo_params
+  end
+
+  def save_memo
+    return false unless @memo.save
+    redirect_to @memo, notice: t('controllers.memos_controller.save')
+  end
+
+  def memo_scope
+    current_user.memos
+  end
+
+  # rubocop:disable Metrics/MethodLength
+  def memo_params
+    memo_params = params[:memo]
+    return {} unless memo_params
+    memo_params.permit(:coffee_shop,
+                       :kind_of_coffee,
+                       :origin,
+                       :taste,
+                       :aroma,
+                       :mood,
+                       :barrista)
+  end
+  # rubocop:enable Metrics/MethodLength
 end

@@ -1,0 +1,5 @@
+en:
+  controllers:
+    memos_controller:
+      save: Your Profile was successfully updated.
+      destroy: Your Profile has been deleted.

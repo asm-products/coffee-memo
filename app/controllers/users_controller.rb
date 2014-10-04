@@ -1,56 +1,50 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
-  before_action :require_correct_user, only: [:edit, :update, :destroy]
-  before_action :set_user, only: [:edit, :update, :destroy]
-
-  def index
-    @users = User.all
-  end
+  before_action :authenticate_user!
 
   def show
-    @user = current_user
-    @memos = @user.memos
+    load_user
   end
 
   def edit
-
+    load_user
+    build_user
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to @user, notice: 'Profile was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  def new
-
-  end
-
-  def create
-
+    load_user
+    build_user
+    save_user || render('edit')
   end
 
   def destroy
-    @user = User.find(params[:id])
+    load_user
     @user.destroy
-    # log em out too!
-    session[:user_id] = nil
-    redirect_to root_url, alert: "Your account has been deleted"
+    redirect_to root_url, alert: t('controllers.users_controller.destroy')
   end
 
-private
-  def require_correct_user
-    @user = User.find(params[:id])
-    redirect_to root_url unless current_user
+  private
+
+  def load_user
+    @user ||= user_scope
   end
 
-  def set_user
-    @user = User.find(params[:id])
+  def build_user
+    @user ||= user_scope.build
+    @user.attributes = user_params
+  end
+
+  def save_user
+    return false unless @user.save
+    redirect_to @user, notice: t('controllers.users_controller.save')
+  end
+
+  def user_scope
+    current_user
   end
 
   def user_params
-    params.require(:user).permit(:username, :first_name, :last_name, :email)
+    user_params = params[:user]
+    return {} unless user_params
+    user_params.permit(:username, :first_name, :last_name, :email)
   end
 end
