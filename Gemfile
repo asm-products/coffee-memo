@@ -14,23 +14,55 @@ gem 'bootstrap-sass'
 
 gem 'devise'
 
-group :development do
-  gem 'binding_of_caller'
-  gem 'foreman'
-  gem 'rails_layout'
-  gem 'pry-rails'
-  gem 'faker'
-end
-
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-group :development, :test do
-  gem 'spring'
-  gem 'rspec-rails'
-  gem 'capybara'
-end
-
 group :production do
   gem 'rails_12factor'
+  gem 'rails_serve_static_assets'
+  gem 'airbrake'
+  gem 'newrelic_rpm'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'shoulda-matchers', require: false
+  gem 'simplecov'
+  gem 'faker'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'launchy'
+  gem 'vcr'
+end
+
+group :test, :development do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'assert_difference'
+  gem 'byebug'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-remote'
+  gem 'pry-rails'
+  gem 'dotenv-rails'
+  gem 'fuubar'
+  gem 'rubocop'
+end
+
+group :development do
+  gem 'rails_layout'
+  gem 'quiet_assets'
+  gem 'guard'
+  gem 'guard-rspec', require: false
+  gem 'guard-rubocop'
+  gem 'guard-rails'
+  gem 'guard-bundler'
+  gem 'guard-passenger'
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'rb-fsevent', require: false
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'foreman'
 end
