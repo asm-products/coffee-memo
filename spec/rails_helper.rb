@@ -11,7 +11,6 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rspec'
-require 'capybara-screenshot/rspec'
 require 'shoulda/matchers'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -26,7 +25,7 @@ Dir['../../spec/factories/*.rb'].each { |file| require_relative file }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
-Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :poltergeist
 Capybara.server_port = 7171
 
 RSpec.configure do |config|

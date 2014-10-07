@@ -31,8 +31,7 @@ group :test do
   gem 'simplecov'
   gem 'faker'
   gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'capybara-screenshot'
+  gem 'poltergeist'
   gem 'launchy'
   gem 'vcr'
 end

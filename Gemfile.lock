@@ -56,15 +56,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-screenshot (1.0.3)
-      capybara (>= 1.0, < 3)
-      colored
-      launchy
-    capybara-webkit (1.3.0)
-      capybara (>= 2.0.2, < 2.5.0)
-      json
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    cliver (0.3.2)
     codeclimate-test-reporter (0.4.1)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
@@ -75,7 +69,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    colored (1.2)
     columnize (0.8.9)
     daemon_controller (1.2.0)
     database_cleaner (1.3.0)
@@ -167,6 +160,11 @@ GEM
       rack
       rake (>= 0.8.1)
     pg (0.17.1)
+    poltergeist (1.5.1)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     polyglot (0.3.5)
     powerpack (0.0.9)
     pry (0.10.1)
@@ -288,6 +286,7 @@ GEM
     vcr (2.9.3)
     warden (1.2.3)
       rack (>= 1.0)
+    websocket-driver (0.3.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -302,8 +301,6 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   capybara
-  capybara-screenshot
-  capybara-webkit
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
   database_cleaner
@@ -325,6 +322,7 @@ DEPENDENCIES
   newrelic_rpm
   passenger
   pg
+  poltergeist
   pry
   pry-byebug
   pry-rails
